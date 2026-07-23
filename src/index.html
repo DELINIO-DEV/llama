@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLAMA — Analog Deck</title>
+<link rel="icon" type="image/svg+xml" href="assets/llama_id.svg">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="app">
+
+  <header class="masthead">
+    <span class="mast-brand">
+      <img class="mast-logo" src="assets/llama_id.svg" alt="LLAMA logo">
+      <span class="wordmark">LLAMA</span>
+    </span>
+    <span class="mast-status" id="mast-status">NO TAPE LOADED</span>
+  </header>
+  <div class="red-rule" aria-hidden="true"></div>
+
+  <div class="frame">
+
+    <!-- ============ LEFT: FILE DIRECTORY ============ -->
+    <aside class="side panel" aria-label="File directory">
+      <h2 class="side-title">FILE DIRECTORY</h2>
+      <ul class="file-tree" id="file-tree"></ul>
+      <div class="dir-controls">
+        <div class="dir-source">SOURCE &middot; <span id="dir-source-name">MUSIC</span> <span class="demo-tag" id="dir-demo-tag">demo</span></div>
+        <div class="dir-actions">
+          <select id="dir-root" class="chip-select" aria-label="Root folder to pull from"></select>
+          <label class="chip-btn" for="dir-input" title="Pull from a real folder on this machine">BROWSE
+            <input type="file" id="dir-input" webkitdirectory hidden>
+          </label>
+        </div>
+      </div>
+    </aside>
+
+    <div class="splitter" id="split-left" role="separator" aria-orientation="vertical"
+         aria-label="Resize file directory" tabindex="0"></div>
+
+    <!-- ============ CENTER STACK ============ -->
+    <section class="center">
+
+      <div class="viz-panel panel">
+        <canvas id="viz-canvas"></canvas>
+        <span class="viz-title" id="viz-title">VISUALIZATION</span>
+      </div>
+
+      <div class="led-panel panel">
+        <canvas id="led-canvas" aria-label="Spectrum analyzer" role="img"></canvas>
+      </div>
+
+      <div class="knob-row panel" id="eq-row" aria-label="Equalizer band gains"></div>
+
+      <div class="transport panel">
+        <div class="t-cluster">
+          <button class="t-btn" id="btn-stop" aria-label="Stop"><span class="glyph-dot"></span></button>
+          <button class="t-btn" id="btn-pause" aria-label="Pause"><span class="glyph-pause"></span></button>
+          <button class="t-btn" id="btn-play" aria-label="Play"><span class="glyph-play"></span></button>
+          <label class="t-btn t-load" for="file-input" title="Load audio file">LOAD
+            <input type="file" id="file-input" accept="audio/*" hidden>
+          </label>
+        </div>
+        <input type="range" class="seek" id="seek" min="0" max="1000" value="0" aria-label="Seek">
+        <button class="t-btn t-repeat" id="btn-repeat" data-mode="off" aria-label="Repeat off">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor"
+               stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="16.5 2 20.5 6 16.5 10"/>
+            <path d="M3.5 11.5V10a4 4 0 0 1 4-4h13"/>
+            <polyline points="7.5 22 3.5 18 7.5 14"/>
+            <path d="M20.5 12.5V14a4 4 0 0 1-4 4h-13"/>
+          </svg>
+          <span class="rpt-one" aria-hidden="true">1</span>
+        </button>
+        <span class="t-time" id="t-time">0:00</span>
+      </div>
+
+      <div class="knob-row panel" id="fx-row" aria-label="Filters and effects"></div>
+
+    </section>
+
+    <div class="splitter" id="split-right" role="separator" aria-orientation="vertical"
+         aria-label="Resize playlist" tabindex="0"></div>
+
+    <!-- ============ RIGHT: PLAYLIST ============ -->
+    <aside class="side panel" aria-label="Playlist">
+      <h2 class="side-title">PLAYLIST</h2>
+      <ul class="play-list" id="play-list"></ul>
+      <p class="side-note">Demo entries are staging dressing; LOAD a local file to put real signal on the board.</p>
+    </aside>
+
+  </div>
+</div>
+<script src="js/app.js"></script>
+</body>
+</html>
